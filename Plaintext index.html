@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Damian Stefański - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-cyan-500 selection:text-black">
+
+  <!-- BRAMKA HASŁA -->
+  <div id="auth-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
+    <div class="glass border border-slate-800 rounded-2xl p-8 max-w-md w-full shadow-2xl text-center">
+      <div class="w-16 h-16 bg-cyan-500/10 border border-cyan-500/30 rounded-2xl flex items-center justify-center mx-auto mb-6 text-cyan-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Profil Chroniony</h2>
+      <p class="text-slate-400 text-sm mb-6">Wprowadź kod dostępu, aby odblokować zawartość portfolio.</p>
+      
+      <form id="password-form" class="space-y-4">
+        <div>
+          <input 
+            type="password" 
+            id="password-input" 
+            placeholder="Wprowadź hasło" 
+            class="w-full px-4 py-3 bg-slate-900/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all tracking-wider text-center"
+            required
+            autofocus
+          />
+        </div>
+        <div id="error-msg" class="text-red-400 text-xs hidden font-medium">Nieprawidłowe hasło dostępu. Spróbuj ponownie.</div>
+        <button 
+          type="submit" 
+          class="w-full py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold rounded-xl transition duration-200 shadow-lg shadow-cyan-500/25 active:scale-95"
+        >
+          Odblokuj dostęp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ZAWARTOŚĆ GŁÓWNA PORTFOLIO -->
+  <div id="portfolio-content" class="hidden">
+    <!-- Pasek nawigacyjny -->
+    <header class="sticky top-0 z-40 glass border-b border-slate-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-slate-950 text-sm">
+            DS
+          </div>
+          <span class="font-bold tracking-tight text-white">Damian Stefański</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#doswiadczenie" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Doświadczenie</a>
+          <a href="#certyfikaty" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Certyfikaty</a>
+          <a href="#edukacja" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Edukacja</a>
+          <button id="lock-btn" class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 rounded-lg transition flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Zablokuj
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+      
+      <!-- HERO SECTION -->
+      <section class="glass border border-slate-800 rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-3xl space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            Senior IT Analyst & UX Specialist
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Damian Stefański
+          </h1>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Specjalista wsparcia IT i analityk procesów ITIL z ponad 5-letnim doświadczeniem w obsłudze korporacyjnych środowisk enterprise (Volvo, Electrolux). Łączę zaawansowane wsparcie II/III linii, zarządzanie incydentami i administrację Active Directory z unikalnym podejściem UX i rozwojem rozwiązań front-endowych.
+          </p>
+
+          <!-- Dane kontaktowe -->
+          <div class="pt-4 flex flex-wrap gap-4 text-xs sm:text-sm text-slate-300">
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800">
+              📍 Młoszowa, Polska
+            </span>
+            <a href="tel:+48730790226" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/40 transition">
+              📞 +48 730 790 226
+            </a>
+            <a href="mailto:d.stefanski.d@gmail.com" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/40 transition">
+              ✉️ d.stefanski.d@gmail.com
+            </a>
+            <a href="https://linkedin.com/in/dstefanski" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/40 transition text-cyan-400">
+              🔗 linkedin.com/in/dstefanski
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- UMIEJĘTNOŚCI I KOMPETENCJE -->
+      <section class="space-y-6">
+        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+          <span class="w-2 h-6 bg-cyan-400 rounded-full"></span>
+          Kluczowe Kompetencje & Technologie
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+            <div class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">IT Operations & SLA</div>
+            <p class="text-slate-300 text-sm leading-relaxed">Incident Management, zgodność SLA (95–98%), Troubleshooting, Knowledge Base Management, ITIL.</p>
+          </div>
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+            <div class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">Systemy Enterprise</div>
+            <p class="text-slate-300 text-sm leading-relaxed">ServiceNow, Active Directory, SAP (p58), Nexthink, Office 365, Siemens Analyzer Dispatching.</p>
+          </div>
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+            <div class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">UX & Web Technologies</div>
+            <p class="text-slate-300 text-sm leading-relaxed">Axure RP, Wireframing, HTML5, CSS3, JavaScript, VS Code, Prototypowanie interaktywne.</p>
+          </div>
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition">
+            <div class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">Języki Obce</div>
+            <p class="text-slate-300 text-sm leading-relaxed">Angielski C1 (zaawansowany), Polski (ojczysty), Niemiecki A1 (podstawowy).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOŚWIADCZENIE ZAWODOWE -->
+      <section id="doswiadczenie" class="space-y-6">
+        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+          <span class="w-2 h-6 bg-cyan-400 rounded-full"></span>
+          Doświadczenie Zawodowe
+        </h2>
+        <div class="space-y-4">
+          
+          <!-- HCL Senior -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-slate-700 transition">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">Senior IT Analyst</h3>
+                <div class="text-sm text-cyan-400 font-medium">HCL Technologies (Kraków)</div>
+              </div>
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 w-fit">01/2021 – 03/2026</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+              <li>Zaawansowane wsparcie II i III linii oraz analiza przyczyn źródłowych (root-cause analysis) dla globalnych klientów enterprise (Electrolux, Volvo) w regionach EMEA i APAC.</li>
+              <li>Zarządzanie kontami użytkowników, uprawnieniami i politykami bezpieczeństwa w Active Directory.</li>
+              <li>Koordynacja projektu Siemens-Healthineers jako dyspozytor – obsługa zgłoszeń awarii analizatorów medycznych w SAP (p58).</li>
+              <li>Tworzenie dokumentacji technicznej, rozwój Bazy Wiedzy (Knowledge Base) oraz wdrażanie nowych pracowników IT.</li>
+            </ul>
+          </div>
+
+          <!-- HCL IT Analyst -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-slate-700 transition">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">IT Analyst</h3>
+                <div class="text-sm text-cyan-400 font-medium">HCL Technologies (Kraków)</div>
+              </div>
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 w-fit">04/2019 – 12/2020</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+              <li>Obsługa bieżących incydentów i zgłoszeń serwisowych za pośrednictwem systemu ServiceNow przy utrzymaniu rygorystycznych wskaźników SLA.</li>
+              <li>Analiza wymagań biznesowych dla projektów Electrolux i łączenie potrzeb użytkowników z zespołami deweloperskimi.</li>
+              <li>Ścisła współpraca z lokalnymi inżynierami IT w diagnostyce problemów sprzętowych i programowych oraz eskalacja zgłoszeń o wysokim priorytecie.</li>
+            </ul>
+          </div>
+
+          <!-- PAGE Interactive -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-slate-700 transition">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">UX Designer</h3>
+                <div class="text-sm text-cyan-400 font-medium">PAGE Interactive (Warszawa - Remote)</div>
+              </div>
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 w-fit">09/2017 – 03/2019</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+              <li>Projektowanie klikalnych makiet i interaktywnych prototypów w Axure RP dla kluczowych klientów (m.in. Klinika Estetyki LUX MED, MultiSport).</li>
+              <li>Opracowywanie architektury informacji, badanie potrzeb użytkowników i optymalizacja spójności UI/UX w aplikacjach webowych.</li>
+              <li>Ścisła współpraca z grafikami i zespołami deweloperskimi na każdym etapie cyklu projektowego.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- REFERENCJE -->
+      <section class="glass border border-slate-800 rounded-3xl p-6 sm:p-8">
+        <div class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-3">Wycinek z Referencji (PAGE Interactive Sp.j.)</div>
+        <blockquote class="text-slate-300 italic text-sm sm:text-base leading-relaxed border-l-2 border-cyan-400 pl-4">
+          „Jednym z jego największych sukcesów było stworzenie klikalnego prototypu strony internetowej dla Kliniki Estetyki LUX MED według wskazówek klienta. Pan Damian Stefański swoje zadania wykonywał w sposób dokładny i obowiązkowy. Wyróżniał się zaangażowaniem, umiejętnością szybkiego rozwiązywania problemów oraz nawiązywania przyjacielskich relacji z klientami i współpracownikami.”
+        </blockquote>
+        <div class="text-xs text-slate-400 mt-3 font-medium">
+          — Łukasz Grondecki, Wspólnik PAGE Interactive
+        </div>
+      </section>
+
+      <!-- DWIE KOLUMNY: CERTYFIKATY ORAZ EDUKACJA -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- CERTYFIKATY -->
+        <section id="certyfikaty" class="space-y-4">
+          <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <span class="w-2 h-5 bg-cyan-400 rounded-full"></span>
+            Certyfikaty & Uprawnienia
+          </h2>
+          <div class="space-y-3">
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Advanced Front-End Programming (HTML, CSS, JS)</div>
+              <div class="text-xs text-slate-400">ERNABO (08/2023)</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Europejski Certyfikat Umiejętności Komputerowych (ECDL)</div>
+              <div class="text-xs text-slate-400">Polskie Towarzystwo Informatyczne (PL-1112746)</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Planowanie sprzedaży i budowanie relacji z klientem</div>
+              <div class="text-xs text-slate-400">DOOR Group S.A. (Zaświadczenie MAŁ/2012/05/207)</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Efektywny sprzedawca – skuteczna komunikacja z klientem</div>
+              <div class="text-xs text-slate-400">DOOR Group S.A. (Zaświadczenie MAŁ/2012/02/083)</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Kurs języka niemieckiego (Poziom A1)</div>
+              <div class="text-xs text-slate-400">Szkoła Językowa Educo</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Prawo Jazdy kat. B</div>
+              <div class="text-xs text-slate-400">Wydane przez Starostę Tarnobrzeskiego (od 2006 r.)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EDUKACJA -->
+        <section id="edukacja" class="space-y-4">
+          <h2 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <span class="w-2 h-5 bg-cyan-400 rounded-full"></span>
+            Edukacja
+          </h2>
+          <div class="space-y-3">
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Dziennikarstwo i Komunikacja Społeczna</div>
+              <div class="text-xs text-cyan-400 font-medium">Specjalizacja: Dziennikarstwo Prasowe (Licencjat)</div>
+              <div class="text-xs text-slate-400 mt-1">Wyższa Szkoła Informatyki i Zarządzania w Rzeszowie (2007 – 2010)</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Informacja Naukowa i Bibliotekoznawstwo</div>
+              <div class="text-xs text-slate-400 mt-1">Uniwersytet Jagielloński w Krakowie (2012 – 2014)</div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+              <div class="font-semibold text-white text-sm">Technik Ekonomista / Organizacja Handlu</div>
+              <div class="text-xs text-slate-400 mt-1">Technikum w Gorzycach im. por. Józefa Sarny (2003 – 2007)</div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+      &copy; 2026 Damian Stefański. Wszystkie prawa zastrzeżone.
+    </footer>
+  </div>
+
+  <!-- SKRYPT AUTORYZACJI -->
+  <script>
+    const EXPECTED_PASS = "87032012199";
+    const authGate = document.getElementById("auth-gate");
+    const portfolioContent = document.getElementById("portfolio-content");
+    const passwordForm = document.getElementById("password-form");
+    const passwordInput = document.getElementById("password-input");
+    const errorMsg = document.getElementById("error-msg");
+    const lockBtn = document.getElementById("lock-btn");
+
+    function unlock() {
+      authGate.classList.add("hidden");
+      portfolioContent.classList.remove("hidden");
+      sessionStorage.setItem("portfolio_session", "unlocked");
+    }
+
+    function lock() {
+      portfolioContent.classList.add("hidden");
+      authGate.classList.remove("hidden");
+      sessionStorage.removeItem("portfolio_session");
+      passwordInput.value = "";
+      errorMsg.classList.add("hidden");
+      passwordInput.focus();
+    }
+
+    if (sessionStorage.getItem("portfolio_session") === "unlocked") {
+      unlock();
+    }
+
+    passwordForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (passwordInput.value.trim() === EXPECTED_PASS) {
+        errorMsg.classList.add("hidden");
+        unlock();
+      } else {
+        errorMsg.classList.remove("hidden");
+        passwordInput.classList.add("border-red-500");
+        passwordInput.focus();
+      }
+    });
+
+    passwordInput.addEventListener("input", () => {
+      passwordInput.classList.remove("border-red-500");
+      errorMsg.classList.add("hidden");
+    });
+
+    lockBtn.addEventListener("click", lock);
+  </script>
+</body>
+</html>
