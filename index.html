@@ -61,8 +61,10 @@
         </div>
         <div class="flex items-center gap-4">
           <a href="#doswiadczenie" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Doświadczenie</a>
+          <a href="#github" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">GitHub</a>
           <a href="#certyfikaty" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Certyfikaty</a>
           <a href="#edukacja" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Edukacja</a>
+          <a href="#dokumenty" class="text-xs sm:text-sm text-slate-400 hover:text-cyan-400 transition hidden sm:inline-block">Dokumenty</a>
           <button id="lock-btn" class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 rounded-lg transition flex items-center gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -132,6 +134,24 @@
             <p class="text-slate-300 text-sm leading-relaxed">Angielski C1 (zaawansowany), Polski (ojczysty), Niemiecki A1 (podstawowy).</p>
           </div>
         </div>
+      </section>
+
+      <!-- PROJEKTY GITHUB -->
+      <section id="github" class="space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+              <span class="w-2 h-6 bg-cyan-400 rounded-full"></span>
+              Projekty na GitHubie
+            </h2>
+            <p class="text-sm text-slate-400 mt-2">Publiczne repozytoria pobrane z profilu macabre4fun.</p>
+          </div>
+          <a href="https://github.com/macabre4fun" target="_blank" rel="noopener noreferrer" class="text-sm text-cyan-400 hover:text-cyan-300 transition">
+            Zobacz profil GitHub
+          </a>
+        </div>
+        <p id="github-status" class="text-sm text-slate-400" role="status" aria-live="polite">Ładowanie repozytoriów…</p>
+        <div id="github-repositories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
       </section>
 
       <!-- DOŚWIADCZENIE ZAWODOWE -->
@@ -267,6 +287,25 @@
 
       </div>
 
+      <!-- DOKUMENTY DO POBRANIA -->
+      <section id="dokumenty" class="space-y-4">
+        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+          <span class="w-2 h-6 bg-cyan-400 rounded-full"></span>
+          Dokumenty do pobrania
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <a href="Damian_Stefanski_CVupdated.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">CV</a>
+          <a href="Damian_Stefanski_Cover_Letter%20%282%29.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">List motywacyjny</a>
+          <a href="9.a%20Referencje%20Page%20Interactive.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Referencje PAGE Interactive</a>
+          <a href="2a.%20Certyfikat%20ECDL.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Certyfikat ECDL</a>
+          <a href="4a.%20Zaswiadczenie%20uczestnictwa%20I.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Zaświadczenie uczestnictwa I</a>
+          <a href="4b.%20Zaswiadczenie%20uczestnictwa%20II.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Zaświadczenie uczestnictwa II</a>
+          <a href="7.%20BA%20Diploma.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Dyplom BA</a>
+          <a href="2.Bilans%20kariery.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Bilans kariery</a>
+          <a href="Portfolio_UX_Stefanski_Damian%20%281%29_compressed.pdf" download class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-sm text-cyan-400 hover:border-cyan-500/40 transition">Portfolio UX</a>
+        </div>
+      </section>
+
     </main>
 
     <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
@@ -283,11 +322,122 @@
     const passwordInput = document.getElementById("password-input");
     const errorMsg = document.getElementById("error-msg");
     const lockBtn = document.getElementById("lock-btn");
+    const githubStatus = document.getElementById("github-status");
+    const githubRepositories = document.getElementById("github-repositories");
+    let githubRepositoriesLoaded = false;
+
+    function setGitHubStatus(message, canRetry = false) {
+      githubStatus.replaceChildren(document.createTextNode(message));
+      if (canRetry) {
+        const retryButton = document.createElement("button");
+        retryButton.type = "button";
+        retryButton.className = "ml-2 text-cyan-400 hover:text-cyan-300 underline underline-offset-2";
+        retryButton.textContent = "Spróbuj ponownie";
+        retryButton.addEventListener("click", loadGitHubRepositories);
+        githubStatus.append(retryButton);
+      }
+    }
+
+    function createRepositoryCard(repository) {
+      const card = document.createElement("article");
+      card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl p-5 hover:border-cyan-500/40 transition flex flex-col";
+
+      const title = document.createElement("h3");
+      title.className = "text-lg font-bold text-white break-words";
+      title.textContent = repository.name;
+
+      const description = document.createElement("p");
+      description.className = "text-sm text-slate-400 mt-2 flex-grow";
+      description.textContent = repository.description || "Publiczne repozytorium na GitHubie.";
+
+      const metadata = document.createElement("div");
+      metadata.className = "flex flex-wrap gap-x-4 gap-y-2 text-xs text-slate-400 mt-4";
+      if (repository.language) {
+        const language = document.createElement("span");
+        language.textContent = repository.language;
+        metadata.append(language);
+      }
+
+      const stars = document.createElement("span");
+      stars.textContent = `★ ${repository.stargazers_count || 0}`;
+      metadata.append(stars);
+
+      if (repository.updated_at) {
+        const updatedAt = new Date(repository.updated_at);
+        if (!Number.isNaN(updatedAt.getTime())) {
+          const updated = document.createElement("span");
+          updated.textContent = `Aktualizacja: ${new Intl.DateTimeFormat("pl-PL").format(updatedAt)}`;
+          metadata.append(updated);
+        }
+      }
+
+      const link = document.createElement("a");
+      link.href = repository.html_url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 mt-5";
+      link.textContent = "Otwórz repozytorium";
+      link.setAttribute("aria-label", `Otwórz repozytorium ${repository.name} na GitHubie`);
+
+      card.append(title, description, metadata, link);
+      return card;
+    }
+
+    async function loadGitHubRepositories() {
+      setGitHubStatus("Ładowanie repozytoriów…");
+      githubRepositories.replaceChildren();
+
+      try {
+        const response = await fetch("https://api.github.com/users/macabre4fun/repos?type=owner&sort=updated&per_page=100", {
+          headers: { Accept: "application/vnd.github+json" }
+        });
+
+        if (!response.ok) {
+          const message = response.status === 403
+            ? "GitHub chwilowo ograniczył liczbę zapytań. Spróbuj ponownie później."
+            : `Nie udało się pobrać repozytoriów (błąd HTTP ${response.status}).`;
+          throw new Error(message);
+        }
+
+        const repositories = await response.json();
+        if (!Array.isArray(repositories)) {
+          throw new Error("GitHub zwrócił nieprawidłową listę repozytoriów.");
+        }
+
+        const projects = repositories
+          .filter(repository => repository && !repository.fork && !repository.archived && typeof repository.name === "string")
+          .slice(0, 6);
+
+        if (projects.length === 0) {
+          setGitHubStatus("Brak publicznych repozytoriów do wyświetlenia.");
+          githubRepositoriesLoaded = true;
+          return;
+        }
+
+        githubRepositories.replaceChildren(...projects.map(createRepositoryCard));
+        setGitHubStatus("");
+        githubRepositoriesLoaded = true;
+      } catch (error) {
+        console.error("Nie udało się załadować repozytoriów z GitHuba:", error);
+        const message = error instanceof TypeError
+          ? "Nie udało się połączyć z GitHubem. Sprawdź połączenie internetowe."
+          : error instanceof Error && error.message
+            ? error.message
+            : "Nie udało się załadować repozytoriów.";
+        setGitHubStatus(
+          message,
+          true
+        );
+      }
+    }
 
     function unlock() {
       authGate.classList.add("hidden");
       portfolioContent.classList.remove("hidden");
       sessionStorage.setItem("portfolio_session", "unlocked");
+      if (!githubRepositoriesLoaded) {
+        loadGitHubRepositories();
+      }
     }
 
     function lock() {
